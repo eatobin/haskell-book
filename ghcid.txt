@@ -1,0 +1,2 @@
+stack build ghcid
+ghcid --command="stack repl"
