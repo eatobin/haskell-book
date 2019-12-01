@@ -4,8 +4,7 @@ sayHello :: String -> IO ()
 sayHello x = putStrLn ("Hello, " ++ x ++ "!!")
 
 addEm :: Int -> Int
-addEm x =
-  (+) x x
+addEm x = (+) x x
 
 subEm :: Int -> Int
 subEm x = (-) x x
