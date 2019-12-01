@@ -11,4 +11,6 @@ subEm x = (-) x x
 
 subOne :: Int -> Int
 subOne x = (-) x 1
--- a comment
+
+addOne :: Float -> Float
+addOne x = (+) x 1.0
