@@ -17,3 +17,6 @@ addOne x = (+) x 1.0
 
 begin :: Int -> Int
 begin x = (+) x 2
+
+giddy :: IO ()
+giddy = putStrLn "Giddy"
