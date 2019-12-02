@@ -14,3 +14,6 @@ subOne x = (-) x 1
 
 addOne :: Float -> Float
 addOne x = (+) x 1.0
+
+begin :: Int -> Int
+begin x = (+) x 2
