@@ -20,3 +20,7 @@ begin x = (+) x 2
 
 giddy :: IO ()
 giddy = putStrLn "Biddy"
+
+wappy :: IO ()
+wappy =
+  putStrLn "wept"
