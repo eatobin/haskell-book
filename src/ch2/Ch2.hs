@@ -19,4 +19,4 @@ begin :: Int -> Int
 begin x = (+) x 2
 
 giddy :: IO ()
-giddy = putStrLn "Middy"
+giddy = putStrLn "Piddy"
