@@ -20,6 +20,3 @@ begin x = (+) x 2
 
 giddy :: IO ()
 giddy = putStrLn "Biddy"
-
-tempy :: Int -> Int
-tempy x = (+) x 10
