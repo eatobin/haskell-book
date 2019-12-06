@@ -26,3 +26,6 @@ addTwo x y = (+) x y
 
 addThree :: Int -> Int -> Int -> Int
 addThree x y z = x + y + z
+
+testing :: Int
+testing = 55
