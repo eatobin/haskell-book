@@ -17,6 +17,7 @@ module Arith2 where
   main :: IO ()
   main = do
     print (0 :: Int)
+    print (0 :: Double)
     print (add 1 0)
     print (addOne 0)
     print (addOnePF 0)
@@ -28,6 +29,7 @@ module Arith2 where
     print ((negate . addOne) 0)
     print ((addOne . addOne . addOne . negate . addOne) 0)
 
+  -- λ> :l Arith2
   -- λ> main
   -- 0
   -- 1
