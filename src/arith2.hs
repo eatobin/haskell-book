@@ -29,7 +29,7 @@ module Arith2 where
     print ((negate . addOne) 0)
     print ((addOne . addOne . addOne . negate . addOne) 0)
 
-  -- λ> :l Arith2
+  -- λ> :load src/arith2.hs
   -- λ> main
   -- 0
   -- 1
