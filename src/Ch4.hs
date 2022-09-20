@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Ch4 where
 
 data Mood = Blah | Woot deriving Show

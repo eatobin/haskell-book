@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Arith2 where
 
   add :: Int -> Int -> Int

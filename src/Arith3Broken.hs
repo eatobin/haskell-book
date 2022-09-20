@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Arith3Broken where
 
 main :: IO ()

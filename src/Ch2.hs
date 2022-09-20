@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Ch2 where
 
 sayHello :: String -> IO ()

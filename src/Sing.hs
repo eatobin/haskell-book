@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Sing where
 
 fstString :: String -> String

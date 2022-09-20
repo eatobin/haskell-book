@@ -1,6 +1,4 @@
- {-# OPTIONS -Wall #-}
-
-module Ch6 where
+ module Ch6 where
 
 import Data.List
 

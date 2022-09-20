@@ -1,6 +1,4 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
-{-# OPTIONS -Wall #-}
-
 module Ch5 where
 
 -- p 125:

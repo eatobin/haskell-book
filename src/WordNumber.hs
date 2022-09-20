@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module WordNumber where
 
 import Data.List (intersperse, intercalate)

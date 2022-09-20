@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module GreetIfCool3 where
 
 -- greetIfCool :: String -> IO ()

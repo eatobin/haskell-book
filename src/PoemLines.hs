@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module PoemLines where
 
 firstSen :: String

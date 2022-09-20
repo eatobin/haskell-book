@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Ch7 where
 
 bindExp :: Integer -> String

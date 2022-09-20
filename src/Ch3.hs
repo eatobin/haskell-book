@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Ch3 where
 
 myString :: String

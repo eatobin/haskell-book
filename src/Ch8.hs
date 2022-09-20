@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Ch8 where
 
 factorial :: Integer -> Integer

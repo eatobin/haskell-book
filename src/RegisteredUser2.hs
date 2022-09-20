@@ -1,6 +1,4 @@
-{-# OPTIONS -Wall #-}
-
-module RegisteredUser where
+module RegisteredUser2 where
 
 newtype Username =
   Username String

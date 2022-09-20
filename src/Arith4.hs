@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Arith4 where
 
 -- id :: a -> a

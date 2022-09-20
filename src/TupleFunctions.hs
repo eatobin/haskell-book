@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module TupleFunctions where
 
 -- These have to be the same type because

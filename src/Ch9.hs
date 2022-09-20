@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Ch9 where
 
 safeHead :: [a] -> Maybe a

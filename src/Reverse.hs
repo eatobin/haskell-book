@@ -1,5 +1,3 @@
-{-# OPTIONS -Wall #-}
-
 module Reverse where
 
 myString1 :: String
