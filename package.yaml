@@ -39,6 +39,10 @@ executables:
     dependencies:
       - haskell-book
 
+    when:
+      - condition: false
+        other-modules: Paths_haskell_book  # your package name here
+
 tests:
   haskell-book-test:
     main: Spec.hs
