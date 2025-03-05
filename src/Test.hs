@@ -1,5 +1,5 @@
 module Test where
 
-sayHello :: String -> IO()
-sayHello x =
+sayHelloTest :: String -> IO()
+sayHelloTest x =
   putStrLn ("Hellooo, " ++ x ++ "!")
