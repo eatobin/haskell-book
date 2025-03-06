@@ -33,9 +33,8 @@ printInc n =
 
 printInc2 :: Integer -> IO ()
 printInc2 n =
-  let
-    plusTwo = n + 2
-    in print plusTwo
+  let plusTwo = n + 2
+   in print plusTwo
 
 -- let x = 5; y = 6 in x * y
 
@@ -71,10 +70,10 @@ plus3 =
 waxOn :: Int
 waxOn =
   x * 5
-    where
-      z = 7
-      y = z + 8
-      x = y ^ (2 :: Integer)
+  where
+    z = 7
+    y = z + 8
+    x = y ^ (2 :: Integer)
 
 triple :: Int -> Int
 triple x =
