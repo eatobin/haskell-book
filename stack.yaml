@@ -20,6 +20,7 @@
 resolver: lts-13.24
 # LTS Haskell 13.24 (ghc-8.6.5)
 # LTS Haskell 14.27 (ghc-8.6.5)
+# HLS version 1.8.0.0
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
