@@ -15,14 +15,20 @@ roundTrip2 = read . show
 main :: IO ()
 main = do
   print (roundTrip 4 :: Int)
-  print (id 4 :: Int)
+
+-- print (id 4 :: Int)
 
 main' :: IO ()
 main' = do
   print (roundTrip' 4 :: Int)
-  print (id 4 :: Int)
+
+-- print (id 4 :: Int)
 
 main2 :: IO ()
 main2 = do
-  print (roundTrip2 4.0 :: Double)
-  print (id 4.0 :: Double)
+  -- print (roundTrip2 4.0 :: Double)
+  -- print (roundTrip2 4 :: Double)
+  -- print (roundTrip2 4 :: Int)
+  print (roundTrip' 4 :: Int)
+
+-- print (id 4.0 :: Double)
