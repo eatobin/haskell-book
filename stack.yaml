@@ -18,9 +18,9 @@
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
 resolver: lts-13.24
-# LTS Haskell 13.24 (ghc-8.6.5)
-# LTS Haskell 14.27 (ghc-8.6.5)
-# HLS version 1.8.0.0
+# LTS Haskell 13.24 (ghc-8.6.5) As spec-ed in book...
+# LTS Haskell 14.27 (ghc-8.6.5) Latest - https://www.stackage.org/lts-14.27
+# HLS version 1.8.0.0 - https://haskell-language-server.readthedocs.io/en/latest/support/ghc-version-support.html
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
