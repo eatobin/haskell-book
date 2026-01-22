@@ -2,4 +2,4 @@ module Main where
 
 main :: IO ()
 main =
-  putStrLn "hello ericky"
+  putStrLn "hello erickyo"
