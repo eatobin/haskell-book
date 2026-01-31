@@ -8,11 +8,11 @@ etTriple :: Integer -> Integer
 etTriple x =
   x * 3
 
-pie :: Floating a => a -> a
+pie :: (Floating a) => a -> a
 pie x =
   (x * x) * 3.14
 
-pie2 :: Floating a => a -> a
+pie2 :: (Floating a) => a -> a
 pie2 x =
   (x * x) * pi
 

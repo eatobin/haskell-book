@@ -2,18 +2,22 @@ module Ch7 where
 
 bindExp :: Integer -> String
 bindExp x =
-  let y = 5 in
-    "the integer was: " ++ show x
-    ++ " and y was: " ++ show (y :: Integer)
+  let y = 5
+   in "the integer was: "
+        ++ show x
+        ++ " and y was: "
+        ++ show (y :: Integer)
 
 bindExp' :: Integer -> String
 bindExp' x =
-  let y = 5 in
-    let z = y + x in
-      "the integer was: "
-      ++ show x ++ " and y was: "
-      ++ show y ++ " and z was: "
-      ++ show z
+  let y = 5
+   in let z = y + x
+       in "the integer was: "
+            ++ show x
+            ++ " and y was: "
+            ++ show y
+            ++ " and z was: "
+            ++ show z
 
 -- trip :: Integer -> Integer
 -- trip = \x -> x * 3
@@ -37,7 +41,8 @@ bindExp' x =
 addOneIfOdd :: Integer -> Integer
 addOneIfOdd n =
   if odd n then f n else n
-    where f p = p + 1
+  where
+    f p = p + 1
 
 addFive :: Integer -> Integer -> Integer
 addFive x y = (if x > y then y else x) + 5
@@ -54,22 +59,22 @@ isItTwo :: Integer -> Bool
 isItTwo 2 = True
 isItTwo _ = False
 
-data WherePenguinsLive =
-    Galapagos
+data WherePenguinsLive
+  = Galapagos
   | Antarctica
   | Australia
   | SouthAfrica
   | SouthAmerica
   deriving (Eq, Show)
 
-newtype Penguin =
-  Peng WherePenguinsLive
+newtype Penguin
+  = Peng WherePenguinsLive
   deriving (Eq, Show)
 
 -- is it South Africa? If so, return True
 isSouthAfrica :: WherePenguinsLive -> Bool
 isSouthAfrica SouthAfrica = True
-isSouthAfrica _           = False
+isSouthAfrica _ = False
 
 -- λ> isSouthAfrica Galapagos
 -- False
@@ -105,19 +110,19 @@ galapagos = Peng Galapagos
 
 galapagosPenguin :: Penguin -> Bool
 galapagosPenguin (Peng Galapagos) = True
-galapagosPenguin _                = False
+galapagosPenguin _ = False
 
 antarcticPenguin :: Penguin -> Bool
 antarcticPenguin (Peng Antarctica) = True
-antarcticPenguin _                 = False
+antarcticPenguin _ = False
 
 -- λ> antarcticPenguin (Peng Antarctica)
 -- True
 
 antarcticOrGalapagos :: Penguin -> Bool
 antarcticOrGalapagos p =
-  galapagosPenguin p ||
-  antarcticPenguin p
+  galapagosPenguin p
+    || antarcticPenguin p
 
 -- λ> antarcticOrGalapagos (Peng Galapagos)
 -- True
@@ -221,8 +226,8 @@ returnAfterApply f a _ = f a
 --     EQ -> putStrLn "Neither employee is the boss"
 --     LT -> reportBoss e' e
 
-data Employee =
-    Coder
+data Employee
+  = Coder
   | Manager
   | Veep
   | CEO
@@ -230,9 +235,10 @@ data Employee =
 
 reportBoss :: Employee -> Employee -> IO ()
 reportBoss e e' =
-  putStrLn $ show e ++
-    " is the boss of " ++
-    show e'
+  putStrLn $
+    show e
+      ++ " is the boss of "
+      ++ show e'
 
 codersRuleCEOsDrool :: Employee -> Employee -> Ordering
 codersRuleCEOsDrool Coder Coder = EQ
@@ -241,7 +247,7 @@ codersRuleCEOsDrool _ Coder = LT
 codersRuleCEOsDrool e e' =
   compare e e'
 
-employeeRank :: ( Employee -> Employee -> Ordering ) -> Employee -> Employee -> IO ()
+employeeRank :: (Employee -> Employee -> Ordering) -> Employee -> Employee -> IO ()
 employeeRank f e e' =
   case f e e' of
     GT -> reportBoss e e'
@@ -313,11 +319,11 @@ avgGrade x
 
 -- 3b
 
---4
+-- 4
 -- λ> :t reverse
 -- reverse :: [a] -> [a]
 
-pal :: Eq a => [a] -> Bool
+pal :: (Eq a) => [a] -> Bool
 pal xs
   | xs == reverse xs = True
   | otherwise = False
@@ -341,22 +347,22 @@ numbers x
 
 negateComp :: Integer
 negateComp =
-  negate . sum $ [1,2,3,4,5]
+  negate . sum $ [1, 2, 3, 4, 5]
 
 negateComp' :: Integer
 negateComp' =
-  (negate . sum) [1,2,3,4,5]
+  (negate . sum) [1, 2, 3, 4, 5]
 
 -- λ> negateComp
 -- -15
 
 takeAndReverse :: [Integer]
 takeAndReverse =
-  take 5 . reverse $ [1..10]
+  take 5 . reverse $ [1 .. 10]
 
 takeAndReverse' :: [Integer]
 takeAndReverse' =
-  (take 5 . reverse) [1..10]
+  (take 5 . reverse) [1 .. 10]
 
 -- λ> takeAndReverse
 -- [10,9,8,7,6]
@@ -410,15 +416,15 @@ lengthFilterA =
 -- λ> lengthFilterA "cata"
 -- 2
 
-print :: Show a => a -> IO ()
+print :: (Show a) => a -> IO ()
 print a =
   putStr (show a)
 
-print' :: Show a => a -> IO ()
+print' :: (Show a) => a -> IO ()
 print' =
   putStr . show
 
-print2 :: Show a => a -> IO ()
+print2 :: (Show a) => a -> IO ()
 print2 a =
   (putStrLn . show) a
 
@@ -430,23 +436,26 @@ print2 a =
 -- 4 b
 -- 5 a
 
-tensDigit :: Integral a => a -> a
+tensDigit :: (Integral a) => a -> a
 tensDigit x = d
-  where xLast = div x 10
-        d = mod xLast 10
+  where
+    xLast = div x 10
+    d = mod xLast 10
 
 -- λ> tensDigit 568
 -- 6
 
-tensDigit' :: Integral a => a -> a
+tensDigit' :: (Integral a) => a -> a
 tensDigit' x = d
-  where xLast = (fst . divMod x) 10
-        d = mod xLast 10
+  where
+    xLast = (fst . divMod x) 10
+    d = mod xLast 10
 
-hunsD :: Integral a => a -> a
+hunsD :: (Integral a) => a -> a
 hunsD x = d
-  where xLast = (fst . divMod x) 100
-        d = mod xLast 10
+  where
+    xLast = (fst . divMod x) 100
+    d = mod xLast 10
 
 -- λ> hunsD 568
 -- 5
@@ -473,7 +482,7 @@ foldBool2 x y b
 -- 1
 
 g :: (a -> b) -> (a, c) -> (b, c)
-g f (t1,t2) = (f t1, t2)
+g f (t1, t2) = (f t1, t2)
 
 -- λ> g (+2) (1,1)
 -- (3,1)
@@ -522,7 +531,7 @@ lengthFilterA2 c =
 
 lengthFilterAxN :: Char -> Int -> String -> Int
 lengthFilterAxN c n =
-  (*n) . length . filter (== c)
+  (* n) . length . filter (== c)
 
 -- λ> lengthFilterAxN 'a' 3 "cata"
 -- 6

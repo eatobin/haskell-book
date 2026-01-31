@@ -26,8 +26,8 @@ printSecond = putStrLn greeting
   where
     greeting = "Yarrrrr"
 
-main :: IO ()
-main = do
+ch3Main :: IO ()
+ch3Main = do
   putStrLn greeting
   printSecond
   where

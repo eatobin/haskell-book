@@ -1,13 +1,13 @@
 module RegisteredUser2 where
 
-newtype Username =
-  Username String
+newtype Username
+  = Username String
 
-newtype AccountNumber =
-  AccountNumber Integer
+newtype AccountNumber
+  = AccountNumber Integer
 
-data User =
-    UnregisteredUser
+data User
+  = UnregisteredUser
   | RegisteredUser Username AccountNumber
 
 printUser :: User -> IO ()

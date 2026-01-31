@@ -12,14 +12,14 @@ roundTrip' = read . show
 roundTrip2 :: (Show a, Read b) => a -> b
 roundTrip2 = read . show
 
-main :: IO ()
-main = do
+arith4Main :: IO ()
+arith4Main = do
   print (roundTrip 4 :: Int)
 
 -- print (id 4 :: Int)
 
-main' :: IO ()
-main' = do
+arith4Main' :: IO ()
+arith4Main' = do
   print (roundTrip' 4 :: Int)
 
 -- print (id 4 :: Int)

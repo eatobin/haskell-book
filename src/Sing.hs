@@ -10,5 +10,6 @@ sndString x =
 
 sing :: String
 sing = if x > y then fstString x else sndString y
-  where x = "Singin"
-        y = "Somewhere"
+  where
+    x = "Singin"
+    y = "Somewhere"

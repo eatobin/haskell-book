@@ -1,6 +1,6 @@
 module WordNumber where
 
-import Data.List (intersperse, intercalate)
+import Data.List (intercalate, intersperse)
 
 interspersed :: Bool
 interspersed =

@@ -27,18 +27,19 @@ myLines' s c = takeWhile (/= c) s : myLines' (dropWhile (== c) . dropWhile (/= c
 
 -- What we want 'myLines sentences' -- to equal
 shouldEqual :: [String]
-shouldEqual = [ "Tyger Tyger, burning bright"
-              , "In the forests of the night"
-              , "What immortal hand or eye"
-              , "Could frame thy fearful symmetry?"
-              ]
+shouldEqual =
+  [ "Tyger Tyger, burning bright",
+    "In the forests of the night",
+    "What immortal hand or eye",
+    "Could frame thy fearful symmetry?"
+  ]
 
 -- The main function here is a small test -- to ensure you've written your function -- correctly.
-main :: IO ()
-main =
+poemMain :: IO ()
+poemMain =
   print $
-  "Are they equal? "
-  ++ show (myLines' sentences '\n' == shouldEqual)
+    "Are they equal? "
+      ++ show (myLines' sentences '\n' == shouldEqual)
 
 -- λ> main
 -- "Are they equal? True"

@@ -1,13 +1,13 @@
 module Ch9 where
 
 safeHead :: [a] -> Maybe a
-safeHead []    = Nothing
-safeHead (x:_) = Just x
+safeHead [] = Nothing
+safeHead (x : _) = Just x
 
 safeTail :: [a] -> Maybe [a]
-safeTail []     = Nothing
-safeTail [_]    = Nothing
-safeTail (_:xs) = Just xs
+safeTail [] = Nothing
+safeTail [_] = Nothing
+safeTail (_ : xs) = Just xs
 
 -- λ> 1:2:[] ++ 7:[]
 -- [1,2,7]
@@ -25,9 +25,9 @@ safeTail (_:xs) = Just xs
 
 eftBool :: Bool -> Bool -> [Bool]
 eftBool False False = [False]
-eftBool True True   = [True]
-eftBool False True  = [False,True]
-eftBool _ _         = []
+eftBool True True = [True]
+eftBool False True = [False, True]
+eftBool _ _ = []
 
 -- λ> eftBool True True
 -- [True]
@@ -44,10 +44,10 @@ eftOrd :: Ordering -> Ordering -> [Ordering]
 eftOrd LT LT = [LT]
 eftOrd EQ EQ = [EQ]
 eftOrd GT GT = [GT]
-eftOrd LT EQ = [LT,EQ]
-eftOrd LT GT = [LT,EQ,GT]
-eftOrd EQ GT = [EQ,GT]
-eftOrd _ _   = []
+eftOrd LT EQ = [LT, EQ]
+eftOrd LT GT = [LT, EQ, GT]
+eftOrd EQ GT = [EQ, GT]
+eftOrd _ _ = []
 
 -- λ> eftOrd LT LT
 -- [LT]
@@ -60,7 +60,7 @@ eftInt f c
   | f > c = []
   | f == c = [f]
   | otherwise =
-    f : eftInt (succ f) c
+      f : eftInt (succ f) c
 
 -- λ> eftInt 5 5
 -- [5]
@@ -78,7 +78,7 @@ eftChar f c
   | f > c = []
   | f == c = [f]
   | otherwise =
-    f : eftChar (succ f) c
+      f : eftChar (succ f) c
 
 -- λ> eftChar 'a' 'a'
 -- "a"
@@ -110,35 +110,35 @@ myWords' s c = takeWhile (/= c) s : myWords' (dropWhile (== c) . dropWhile (/= c
 
 comp1 :: [Integer]
 comp1 =
-  [(x :: Integer)^(2 :: Integer) | x <- [1..10], rem x 2 == 0]
+  [(x :: Integer) ^ (2 :: Integer) | x <- [1 .. 10], rem x 2 == 0]
 
 -- λ> comp1
 -- [4,16,36,64,100]
 
 comp2 :: [Integer]
 comp2 =
-  [(x :: Integer)^(y :: Integer) | x <- [1..5], y <- [2, 3]]
+  [(x :: Integer) ^ (y :: Integer) | x <- [1 .. 5], y <- [2, 3]]
 
 -- λ> comp2
 -- [1,1,4,8,9,27,16,64,25,125]
 
-comp3 :: [(Integer,Char)]
+comp3 :: [(Integer, Char)]
 comp3 =
-  [(x,y) | x <- [1,2,3], y <- ['a','b']]
+  [(x, y) | x <- [1, 2, 3], y <- ['a', 'b']]
 
 -- λ> comp3
 -- [(1,'a'),(1,'b'),(2,'a'),(2,'b'),(3,'a'),(3,'b')]
 
 mySqr :: [Integer]
 mySqr =
-  [(x :: Integer)^(2 :: Integer) | x <- [1..10]]
+  [(x :: Integer) ^ (2 :: Integer) | x <- [1 .. 10]]
 
 -- λ> mySqr
 -- [1,4,9,16,25,36,49,64,81,100]
 
-mySqrPr :: [(Integer,Integer)]
+mySqrPr :: [(Integer, Integer)]
 mySqrPr =
-  [(x,y) | x <- mySqr, y <- [1..3], x < 4]
+  [(x, y) | x <- mySqr, y <- [1 .. 3], x < 4]
 
 -- λ> mySqrPr
 -- [(1,1),(1,2),(1,3)]
@@ -147,56 +147,56 @@ mySqrPr =
 
 myEvenSqr :: [Integer]
 myEvenSqr =
-  [x | x <-mySqr, rem x 2 == 0]
+  [x | x <- mySqr, rem x 2 == 0]
 
 -- λ> myEvenSqr
 -- [4,16,36,64,100]
 
-myFifty :: [(Integer,Integer)]
+myFifty :: [(Integer, Integer)]
 myFifty =
-  [(x,y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
+  [(x, y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
 
 -- λ> myFifty
 -- [(1,64),(1,81),(1,100),(4,64),(4,81),(4,100),(9,64),(9,81),(9,100),(16,64),(16,81),(16,100),(25,64),(25,81),(25,100),(36,64),(36,81),(36,100),(49,64),(49,81),(49,100)]
 
-myFiveFifty :: [(Integer,Integer)]
+myFiveFifty :: [(Integer, Integer)]
 myFiveFifty =
-  take 5 [(x,y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
+  take 5 [(x, y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
 
 -- λ> myFiveFifty
 -- [(1,64),(1,81),(1,100),(4,64),(4,81)]
 
 myElem :: String -> String
 myElem xs =
-  [x | x <- xs, x `elem` ['A'..'Z']]
+  [x | x <- xs, x `elem` ['A' .. 'Z']]
 
 -- page 317
 
 mySqr2 :: [Integer]
 mySqr2 =
-  [(x :: Integer)^(2 :: Integer) | x <- [1..5]]
+  [(x :: Integer) ^ (2 :: Integer) | x <- [1 .. 5]]
 
 myCube :: [Integer]
 myCube =
-  [(y :: Integer)^(3 :: Integer) | y <- [1..5]]
+  [(y :: Integer) ^ (3 :: Integer) | y <- [1 .. 5]]
 
-mySandC :: [(Integer,Integer)]
+mySandC :: [(Integer, Integer)]
 mySandC =
-  [(x,y) | x <- mySqr2, y <- myCube]
+  [(x, y) | x <- mySqr2, y <- myCube]
 
 -- λ> mySandC
 -- [(1,1),(1,8),(1,27),(1,64),(1,125),(4,1),(4,8),(4,27),(4,64),(4,125),(9,1),(9,8),(9,27),(9,64),(9,125),(16,1),(16,8),(16,27),(16,64),(16,125),(25,1),(25,8),(25,27),(25,64),(25,125)]
 
-mySandC' :: [(Integer,Integer)]
+mySandC' :: [(Integer, Integer)]
 mySandC' =
-  [(x,y) | x <- mySqr2, y <- myCube, y < 50]
+  [(x, y) | x <- mySqr2, y <- myCube, y < 50]
 
 -- λ> mySandC'
 -- [(1,1),(1,8),(1,27),(4,1),(4,8),(4,27),(9,1),(9,8),(9,27),(16,1),(16,8),(16,27),(25,1),(25,8),(25,27)]
 
 mySandC2 :: Int
 mySandC2 =
-  length [(x,y) | x <- mySqr2, y <- myCube, y < 50]
+  length [(x, y) | x <- mySqr2, y <- myCube, y < 50]
 
 -- λ> mySandC2
 -- 15

@@ -6,7 +6,7 @@ factorial n = n * factorial (n - 1)
 
 -- λ> factorial 6
 -- 720
-inc :: Num a => a -> a
+inc :: (Num a) => a -> a
 inc = (+ 1)
 
 three :: Integer
@@ -43,7 +43,7 @@ applyTimes' n f b = f . applyTimes' (n - 1) f $ b
 
 -- λ> applyTimes' 6 (+2) 5
 -- 17
-fibonacci :: Integral a => a -> a
+fibonacci :: (Integral a) => a -> a
 fibonacci 0 = 0
 fibonacci 1 = 1
 fibonacci x = fibonacci (x - 1) + fibonacci (x - 2)
@@ -61,7 +61,7 @@ fibonacci x = fibonacci (x - 1) + fibonacci (x - 2)
 --   }
 --   go(0, 1, 3)
 -- }
-dividedBy :: Integral a => a -> a -> (a, a)
+dividedBy :: (Integral a) => a -> a -> (a, a)
 dividedBy num denom = go num denom 0
   where
     go n d count
@@ -120,7 +120,7 @@ mySum x = x + mySum (x - 1)
 -- 1485
 -- λ> mySum 5 :: Double
 -- 15.0
-myMult :: Integral a => a -> a -> a
+myMult :: (Integral a) => a -> a -> a
 myMult num pow = go num pow 1 num
   where
     go n p count total
@@ -146,7 +146,7 @@ isValid :: Integer -> DividedResult
 isValid 0 = DividedByZero
 isValid n = Result n
 
-dividedBy' :: Integral a => a -> a -> (a, a)
+dividedBy' :: (Integral a) => a -> a -> (a, a)
 dividedBy' num denom = go (abs num) (abs denom) 0
   where
     sign =
@@ -193,5 +193,6 @@ mc91 :: Integer -> Integer
 mc91 x
   | x > 100 = x - 10
   | otherwise = (mc91 . mc91) (x + 11)
+
 -- λ> map mc91 [95..110]
 -- [91,91,91,91,91,91,91,92,93,94,95,96,97,98,99,100]

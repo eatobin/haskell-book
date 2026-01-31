@@ -1,28 +1,35 @@
- module Ch6 where
+module Ch6 where
 
 import Data.List
 
-data HiLo =
-  Hi | Lo
+data HiLo
+  = Hi
+  | Lo
 
 instance Eq HiLo where
   (==) Hi Hi = True
   (==) Lo Lo = True
-  (==) _ _   = False
+  (==) _ _ = False
 
-newtype MyHand =
-  MyHand HiLo
+newtype MyHand
+  = MyHand HiLo
 
 instance Eq MyHand where
   (==) (MyHand hand) (MyHand hand') =
     hand == hand'
 
-data DayOfWeek =
-  Mon | Tue | Wed | Thu | Fri | Sat | Sun
+data DayOfWeek
+  = Mon
+  | Tue
+  | Wed
+  | Thu
+  | Fri
+  | Sat
+  | Sun
   deriving (Show)
 
-data Date =
-  Date DayOfWeek Int
+data Date
+  = Date DayOfWeek Int
 
 instance Eq DayOfWeek where
   (==) Mon Mon = True
@@ -32,59 +39,60 @@ instance Eq DayOfWeek where
   (==) Fri Fri = True
   (==) Sat Sat = True
   (==) Sun Sun = True
-  (==) _ _     = False
+  (==) _ _ = False
 
 instance Ord DayOfWeek where
   compare Fri Fri = EQ
-  compare Fri _   = GT
-  compare _ Fri   = LT
-  compare _ _     = EQ
+  compare Fri _ = GT
+  compare _ Fri = LT
+  compare _ _ = EQ
 
 instance Eq Date where
-  (==) (Date weekday dayOfMonth)
-       (Date weekday' dayOfMonth') =
-         weekday == weekday'
-         && dayOfMonth == dayOfMonth'
+  (==)
+    (Date weekday dayOfMonth)
+    (Date weekday' dayOfMonth') =
+      weekday == weekday'
+        && dayOfMonth == dayOfMonth'
 
-newtype Identity a =
-  Identity a
+newtype Identity a
+  = Identity a
 
-instance Eq a => Eq (Identity a) where
+instance (Eq a) => Eq (Identity a) where
   (==) (Identity v) (Identity v') = v == v'
 
 -- pg 178
 
-newtype TisAnInteger =
-  TisAn Integer
+newtype TisAnInteger
+  = TisAn Integer
 
 instance Eq TisAnInteger where
- (==) (TisAn x) (TisAn x') = x == x'
+  (==) (TisAn x) (TisAn x') = x == x'
 
 -- λ> TisAn 4 == TisAn 4
 -- True
 -- λ> TisAn 4 == TisAn 46
 -- False
 
-data TwoIntegers =
-  Two Integer Integer
+data TwoIntegers
+  = Two Integer Integer
 
 instance Eq TwoIntegers where
   (==) (Two d e) (Two d' e') =
-       d == d' && e == e'
+    d == d' && e == e'
 
 -- λ> Two 4 8 == Two 4 8
 -- True
 -- λ> Two 4 8 == Two 4 9
 -- False
 
-data StringOrInt =
-    TisAnInt Int
+data StringOrInt
+  = TisAnInt Int
   | TisAString String
 
 instance Eq StringOrInt where
-  (==) (TisAnInt i) (TisAnInt i')     = i == i'
+  (==) (TisAnInt i) (TisAnInt i') = i == i'
   (==) (TisAString s) (TisAString s') = s == s'
-  (==) _ _                            = False
+  (==) _ _ = False
 
 -- λ> TisAnInt 55 == TisAnInt 55
 -- True
@@ -95,10 +103,10 @@ instance Eq StringOrInt where
 -- λ> TisAString "aa" == TisAString "aah"
 -- False
 
-data Pair a =
-  Pair a a
+data Pair a
+  = Pair a a
 
-instance Eq a => Eq (Pair a) where
+instance (Eq a) => Eq (Pair a) where
   (==) (Pair g _) (Pair _ h) = g == h
 
 -- λ> Pair 5 5 == Pair 5 5
@@ -106,39 +114,39 @@ instance Eq a => Eq (Pair a) where
 -- λ> Pair 5 5 == Pair 6 6
 -- False
 
-data Tuple a b =
-   Tuple a b
+data Tuple a b
+  = Tuple a b
 
 instance (Eq a, Eq b) => Eq (Tuple a b) where
   (==) (Tuple c d) (Tuple c' d') =
-       c == c' && d == d'
+    c == c' && d == d'
 
 -- λ> Tuple 6 8 == Tuple 6 8
 -- True
 -- λ> Tuple 6 8 == Tuple 6 88
 -- False
 
-data Which a =
-    ThisOne a
+data Which a
+  = ThisOne a
   | ThatOne a
 
-instance Eq a => Eq (Which a) where
+instance (Eq a) => Eq (Which a) where
   (==) (ThisOne w) (ThatOne x) = w == x
-  (==) _ _                     = False
+  (==) _ _ = False
 
 -- λ> ThisOne 'x' == ThatOne 'x'
 -- True
 -- λ> ThisOne 'x' == ThatOne 'h'
 -- False
 
-data EitherOr a b =
-    Hello a
+data EitherOr a b
+  = Hello a
   | Goodbye b
 
 instance (Eq a, Eq b) => Eq (EitherOr a b) where
-  (==) (Hello d) (Hello d')     = d == d'
+  (==) (Hello d) (Hello d') = d == d'
   (==) (Goodbye e) (Goodbye e') = e == e'
-  (==) _ _                      = False
+  (==) _ _ = False
 
 -- λ> Hello "dog" == Hello "dog"
 -- True
@@ -154,8 +162,8 @@ class Numberish a where
   toNumber :: a -> Integer
   defaultNumber :: a
 
-newtype Age =
-  Age Integer
+newtype Age
+  = Age Integer
   deriving (Eq, Show)
 
 instance Numberish Age where
@@ -163,8 +171,8 @@ instance Numberish Age where
   toNumber (Age n) = n
   defaultNumber = Age 65
 
-newtype Year =
-  Year Integer
+newtype Year
+  = Year Integer
   deriving (Eq, Show)
 
 instance Numberish Year where
@@ -172,7 +180,7 @@ instance Numberish Year where
   toNumber (Year n) = n
   defaultNumber = Year 1988
 
-sumNumberish :: Numberish a => a -> a -> a
+sumNumberish :: (Numberish a) => a -> a -> a
 sumNumberish a b = fromNumber summed
   where
     integerOfA = toNumber a
@@ -183,13 +191,13 @@ sumNumberish a b = fromNumber summed
 -- λ> sumNumberish (Year 100) (Year 100)
 -- Year 200
 
-sumNumberish' :: Numberish a => a -> a -> a
+sumNumberish' :: (Numberish a) => a -> a -> a
 sumNumberish' a b = fromNumber (toNumber a + toNumber b)
 
 -- λ> sumNumberish' (Year 100) (Year 100)
 -- Year 200
 
-sumNumberish'' :: Numberish a => a -> a -> Integer
+sumNumberish'' :: (Numberish a) => a -> a -> Integer
 sumNumberish'' a b = toNumber a + toNumber b
 
 -- λ> sumNumberish'' (Year 100) (Year 100)
@@ -202,17 +210,17 @@ sumNumberish'' a b = toNumber a + toNumber b
 addWeird :: (Ord a, Num a) => a -> a -> a
 addWeird x y =
   if x > 1
-  then x + y
-  else x
+    then x + y
+    else x
 
 -- The problem is that having a Num constraint (alone) on our type a isn’t
 -- enough. Num doesn’t imply Ord.
 
-addWeird' ::  Integer -> Integer -> Integer
+addWeird' :: Integer -> Integer -> Integer
 addWeird' x y =
   if x > 1
-  then x + y
-  else x
+    then x + y
+    else x
 
 -- But Integer does imply Ord!
 
@@ -225,30 +233,34 @@ addWeird' x y =
 -- 5 a
 
 newtype Person = Person Bool
-                 deriving Show
+  deriving (Show)
 
 printPerson :: Person -> IO ()
 printPerson = print
 
 -- typechecks after adding Show
 
-data Mood = Blah
-          | Woot deriving (Eq, Show)
+data Mood
+  = Blah
+  | Woot
+  deriving (Eq, Show)
 
 settleDown :: Mood -> Mood
 settleDown x =
   if x == Woot
-  then Blah
-  else x
+    then Blah
+    else x
 
 -- typechecks after adding Eq
 
 type Subject = String
+
 type Verb = String
+
 type Object = String
 
-data Sentence =
-  Sentence Subject Verb Object
+data Sentence
+  = Sentence Subject Verb Object
   deriving (Eq, Show)
 
 -- s1 = Sentence "dogs" "drool" -- Needs an Object
@@ -259,22 +271,26 @@ s2 = Sentence "Julie" "loves" "dogs"
 -- Sentence "Julie" "loves" "dogs"
 -- deriving Show -- all that's needed
 
-newtype Rocks =
-  Rocks String deriving (Eq, Show)
+newtype Rocks
+  = Rocks String
+  deriving (Eq, Show)
 
-newtype Yeah =
-  Yeah Bool deriving (Eq, Show)
+newtype Yeah
+  = Yeah Bool
+  deriving (Eq, Show)
 
-data Papu =
-  Papu Rocks Yeah
+data Papu
+  = Papu Rocks Yeah
   deriving (Eq, Show)
 
 -- phew = Papu "chases" True
 -- Nope!
 
 truth :: Papu
-truth = Papu (Rocks "chomskydoz")
-             (Yeah True)
+truth =
+  Papu
+    (Rocks "chomskydoz")
+    (Yeah True)
 
 equalityForall :: Papu -> Papu -> Bool
 equalityForall p p' = p == p'
@@ -284,21 +300,21 @@ equalityForall p p' = p == p'
 
 -- Nope - no instance of Ord to compare with
 
-iBall :: Num a => a
+iBall :: (Num a) => a
 -- iBall :: a -- Nope
 iBall = 1
 
 -- flem :: Float
 -- flem :: Num a => a
-flem :: Fractional a => a
+flem :: (Fractional a) => a
 flem = 1.0
 
 -- froth :: Float
-froth :: RealFrac a => a
+froth :: (RealFrac a) => a
 froth = 1.0
 
 -- freud :: a -> a
-freud :: Ord a => a -> a
+freud :: (Ord a) => a -> a
 freud x = x
 
 -- faux :: a -> a
@@ -324,7 +340,7 @@ sharp _ = myX
 jung :: [Int] -> Int
 jung = minimum
 
-young :: Ord a => [a] -> a
+young :: (Ord a) => [a] -> a
 -- young :: String -> Char
 young = minimum
 
@@ -332,10 +348,10 @@ mySort :: String -> String
 mySort = sort
 
 -- signifier :: String -> Char
-signifier :: Ord a => [a] -> a
+signifier :: (Ord a) => [a] -> a
 signifier = minimum
 
-chk :: Eq b => (a -> b) -> a -> b -> Bool
+chk :: (Eq b) => (a -> b) -> a -> b -> Bool
 chk f a b = f a == b
 
 -- λ> chk (\_ -> 'g') 2 'r'
@@ -343,7 +359,7 @@ chk f a b = f a == b
 -- λ> chk (\_ -> 'g') 2 'g'
 -- True
 
-arith :: Num b => (a -> b) -> Integer -> a -> b
+arith :: (Num b) => (a -> b) -> Integer -> a -> b
 arith f n a = f a * fromInteger n
 
 -- λ> arith (+4.1) 2 6.0
