@@ -48,6 +48,9 @@ packages:
 #
 # extra-deps: []
 
+extra-deps:
+  - system-fileio-0.3.16.7
+
 # Override default flag values for local packages and extra-deps
 # flags: {}
 
